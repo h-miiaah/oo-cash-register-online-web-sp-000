@@ -1,5 +1,5 @@
 class CashRegister
-  attr_accessor :total, :discount, :price, :items
+  attr_accessor :items, :discount, :total, :last_transaction
 
   def initialize(discount = 0)
     @total = 0
@@ -8,12 +8,12 @@ class CashRegister
   end
 
 # add_item method accepts parameters of item, price, and quantity. Sets the total to the current total + price * quantity. Then adds the item to the items array as many times as the quantity value. Finally it sets the last_transaction tot he price * quantity of the last item.
-  def add_item(item, price, quantity = 1)
-    self.total += price * quantity
+  def add_item(title, amount, quantity = 1)
+    self.total += amount * quantity
     quantity.times do
-      items << item
+      items << title
     end
-    self.last_transaction = price * quantity
+    self.last_transaction = amount * quantity
   end
 
 # apply_discount method applies the discount given to the total and displays it in a message, if there is no discount it displays a message that there is no discount to apply.
